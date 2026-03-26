@@ -1,23 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
 
 function App() {
+  const [skills, setSkills] = useState("");
+  const [result, setResult] = useState([]);
+
+  const handleSubmit = () => {
+    // Temporary dummy recommendations
+    const jobs = [
+      "Frontend Developer",
+      "Backend Developer",
+      "Data Analyst",
+      "AI Engineer"
+    ];
+
+    setResult(jobs);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>AI Skill & Job Matcher</h1>
+
+      <input
+        type="text"
+        placeholder="Enter your skills (e.g. Java, Python)"
+        value={skills}
+        onChange={(e) => setSkills(e.target.value)}
+      />
+
+      <button onClick={handleSubmit}>Get Recommendations</button>
+
+      <div>
+        {result.map((job, index) => (
+          <p key={index}>{job}</p>
+        ))}
+      </div>
     </div>
   );
 }
